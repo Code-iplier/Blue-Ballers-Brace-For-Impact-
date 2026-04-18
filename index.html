@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brace For Impact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Orbitron:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+    <div id="mainMenu" class="menu-overlay">
+        <div class="menu-box">
+            <h1 class="menu-title">BRACE FOR IMPACT</h1>
+            <button class="menu-btn" id="startGameBtn" type="button">START GAME</button>
+            <button class="menu-btn secondary" onmousedown="showMenu('howToPlay')">HOW TO PLAY</button>
+        </div>
+    </div>
+
+    <div id="howToPlay" class="menu-overlay hidden">
+        <div class="menu-box">
+            <h2 class="menu-title" style="font-size: 2em;">HOW TO PLAY</h2>
+            <div style="color: #fff; text-align: left; margin: 20px;">
+                <p><span style="color:#fee440">W</span> - Accelerate</p>
+                <p><span style="color:#fee440">S</span> - Brake</p>
+                <p><span style="color:#fee440">A</span> - Steer Left</p>
+                <p><span style="color:#fee440">D</span> - Steer Right</p>
+                <p><span style="color:#fee440">ESC</span> - Pause</p>
+                <p><span style="color:#fee440">H</span> - Honk</p>
+            </div>
+            <button class="menu-btn" onclick="showMenu('mainMenu')">BACK</button>
+        </div>
+    </div>
+
+    <div id="pauseMenu" class="menu-overlay hidden">
+        <div class="menu-box">
+            <h2 class="menu-title" style="font-size: 2em;">PAUSED</h2>
+            <button class="menu-btn" onclick="resumeGame()">RESUME</button>
+            <button class="menu-btn secondary" onclick="restartGame()">RESTART</button>
+            <button class="menu-btn secondary" onclick="quitToMenu()">QUIT</button>
+        </div>
+    </div>
+
+    <div id="finishPopup" class="menu-overlay hidden">
+        <div class="menu-box">
+            <h2 id="finishPosition" style="font-size: 3em; color: #00f5d4;">1st PLACE!</h2>
+            <div id="finishTime" style="color: #fff; font-size: 1.5em;">Time: 00:00</div>
+            <a id="rewardBtn" href="https://www.youtube.com/watch?v=Ce-jwZ39JzE" target="_blank"
+                class="menu-btn reward-btn hidden"
+                style="display:none; text-decoration:none; text-align:center; margin:15px 0; background:linear-gradient(135deg,#fee440 0%,#f4a261 100%); color:#1a1a2e;">🏆
+                CLAIM REWARD 🏆</a>
+            <button class="menu-btn" onclick="restartGame()">PLAY AGAIN</button>
+            <button class="menu-btn secondary" onclick="quitToMenu()">QUIT</button>
+        </div>
+    </div>
+
+    <div id="crashPopup" class="menu-overlay hidden">
+        <div class="menu-box">
+            <img id="crashImage" src="images/crash.png" alt="CRASHED!"
+                style="width: 200px; height: auto; display: block; margin: 0 auto 20px;">
+            <h2 style="font-size: 2.5em; color: #ff006e;">CRASHED!</h2>
+            <p style="color: #fff; font-size: 1.2em; margin-bottom: 20px;">Too many collisions!</p>
+            <button class="menu-btn" onclick="restartAfterCrash()">RESTART</button>
+        </div>
+    </div>
+
+    <div id="hud" class="hud hidden">
+        <div class="hud-item" id="positionHud">POS: 1/6</div>
+        <div class="hud-item hud-center" id="timerHud">00:00.00</div>
+        <div class="hud-item" id="speedHud">0 MPH</div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+
+</html>
